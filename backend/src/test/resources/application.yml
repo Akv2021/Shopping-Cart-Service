@@ -1,0 +1,35 @@
+  server:
+    port: 0  # Random port for testing
+  spring:
+    application:
+      name: shopping-cart-backend
+    main:
+      allow-bean-definition-overriding: true
+
+  shopping:
+    defaultPriority: 100
+    items:
+      APPLE:
+        basePrice: 0.35
+        strategies:
+          - type: REGULAR
+      BANANA:
+        basePrice: 0.20
+        strategies:
+          - type: REGULAR
+      MELON:
+        basePrice: 0.50
+        strategies:
+          - type: BOGO
+            priority: 1
+      LIME:
+        basePrice: 0.15
+        strategies:
+          - type: THREE_FOR_TWO
+      MANGO:
+        basePrice: 1.00
+        strategies:
+          - type: BULK_DISCOUNT  # 10% off for 5 or more
+            priority: 1
+          - type: SEASONAL      # Additional 5% off
+            priority: 2

@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: shopping-cart-backend
+  main:
+    allow-bean-definition-overriding: true
+
+shopping:
+  defaultPriority: 100          # Default priorities will be used if not specified in strategies
+  items:
+    APPLE:
+      basePrice: 0.35
+      strategies:               # Always an array
+        - type: REGULAR         # Single strategy, no priority needed
+    BANANA:
+      basePrice: 0.20
+      strategies:
+        - type: REGULAR
+    MELON:
+      basePrice: 0.50
+      strategies:
+        - type: BOGO
+    LIME:
+      basePrice: 0.15
+      strategies:
+        - type: THREE_FOR_TWO
+    MANGO:                 # New item with multiple strategies
+      basePrice: 1.00
+      strategies:
+        - type: BULK_DISCOUNT  # 10% off for 5 or more
+          priority: 1
+        - type: SEASONAL      # Additional 5% off (example of combining strategies)
+          priority: 2
+
+logging:
+  level:
+    com.cart: DEBUG
+    org.springframework: INFO
